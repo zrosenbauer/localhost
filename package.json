@@ -1,0 +1,22 @@
+{
+	"name": "localhost",
+	"description": "Local setup, scripts and bits & pieces...",
+	"type": "module",
+	"packageManager": "yarn@4.9.1",
+	"scripts": {
+		"check": "biome check",
+		"fix": "biome check --write --unsafe"
+	},
+	"dependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@tsconfig/node22": "^22.0.1",
+		"@types/yargs": "^17.0.33",
+		"add": "^2.0.6",
+		"consola": "^3.4.2",
+		"envalid": "^8.0.0",
+		"ts-pattern": "^5.7.0",
+		"tsx": "^4.19.3",
+		"yargs": "^17.7.2",
+		"yarn": "^1.22.22"
+	}
+}

@@ -12,7 +12,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="dpoggi" # set by `omz`
+ZSH_THEME="zrosenbauer"
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -105,9 +105,16 @@ fi
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+alias zshconfig="mate ~/.zshrc"
+alias ohmyzsh="mate ~/.oh-my-zsh"
+alias cloud_sql_proxy="~/cloud_sql_proxy"
 alias ls="eza"
 alias hal="yarn hal"
-alias turbo="yarn turbo"
+alias plm="yarn pulumi"
+alias code="open -b com.microsoft.VSCode"
+
+# Canvas PKG
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
 
 ###
 # Custom Scripts & Tools
@@ -117,9 +124,8 @@ alias turbo="yarn turbo"
 source ~/zac-shell/unicorn-git.sh
 
 # nvm setup
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/zrosenbauer/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/zrosenbauer/google-cloud-sdk/path.zsh.inc'; fi
@@ -131,5 +137,25 @@ if [ -f '/Users/zrosenbauer/google-cloud-sdk/completion.zsh.inc' ]; then . '/Use
 # Special ENV Variables 
 ###
 
-NOW=$(date '+%F_%H:%M:%S')
-TODAY=$(date '+%F')
+NOW="$(date '+%F_%H:%M:%S')"
+TODAY="$(date '+%F')"
+
+# bun completions
+[ -s "/Users/zrosenbauer/.bun/_bun" ] && source "/Users/zrosenbauer/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# ruby
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh # Or run `brew info chruby` to find out installed directory
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+
+# depot
+export DEPOT_TOKEN="depot_a7f49e561a0e567931dd273382fa801f87716586411eceed3c4b3d3173513996"
+export DEPOT_ORG_ID="5tfztl8kcs"
+
+# turborepo
+export TURBO_TOKEN=$DEPOT_TOKEN
+export TURBO_TEAM=$DEPOT_ORG_ID
+export TURBO_API="https://cache.depot.dev"
